@@ -3,6 +3,10 @@ import os
 myBook = ['Buku1','Buku2','Buku3','Buku4','Buku5']
 borrowBook = []
 
+def title():
+    ttl = "\t~~~peprustakaan jaya abadi~~~\n"
+    print(ttl.upper())
+
 def cariBuku(namaBuku):
     kondisi1=True
     kondisi2=True
@@ -74,8 +78,10 @@ def denda (hari):
 
 def menuUtama():
     #Program akan melakukan perulangan sampai exit
+    
     while(True):
         os.system('cls') #membersihkan layar
+        title()
         print('List Buku: ', myBook)
         print('Buku yang sedang dipinjam: ', borrowBook,'\n')
         print("""Selamat Datang di program Katalog Perpustakaan:
