@@ -1,71 +1,71 @@
 import os
 
-myBook = ['Buku1','Buku2','Buku3','Buku4','Buku5']
+myBook = ['Matlab','Matematika Terpadu','Analisis Numerik','Struktur Data dan Algoritma']
 borrowBook = []
 
 def title():
-    ttl = "\t~~~peprustakaan jaya abadi~~~\n"
+    ttl = "\t~~~perpustakaan jaya abadi~~~\n"
     print(ttl.upper())
 
 def cariBuku(namaBuku):
     kondisi1=True
     kondisi2=True
     for i in range (len(myBook)):
-        if(namaBuku==myBook[i]):
+        if(namaBuku.title()==myBook[i]):
             kondisi1=False
             break
             
     if kondisi1 == False:
-        print('Buku ' + namaBuku + ' telah ditemukan')
+        print('Buku ' + namaBuku.title() + ' telah ditemukan')
         print("Tekan \"Enter\" untuk melanjutkan")
         x = input()
         menuUtama()
     else:
         for i in range (len(borrowBook)):
-            if(namaBuku==borrowBook[i]):
+            if(namaBuku.title()==borrowBook[i]):
                 kondisi2=False
                 break
         
     if kondisi2 == False:
-        print('Buku ' + namaBuku + ' sedang dipinjam')
+        print('Buku ' + namaBuku.title() + ' sedang dipinjam')
         print("Tekan \"Enter\" untuk melanjutkan")
         x = input()
         menuUtama()
     else:
-        print('Buku ' + namaBuku + ' tidak ditemukan')
+        print('Buku ' + namaBuku.title() + ' tidak ditemukan')
         print("Tekan \"Enter\" untuk melanjutkan")
         x = input()
         menuUtama()
     
 
 def tambahBuku(judulBuku):
-    myBook.append(judulBuku)
+    myBook.append(judulBuku.title())
 
 def pinjamBuku(judulBuku):
     kondisi3 = True
     for i in range (len(myBook)):
-        if(judulBuku==myBook[i]):
+        if(judulBuku.title()==myBook[i]):
             kondisi3=False
             break
     if kondisi3 == False:
-        myBook.remove(judulBuku)
-        borrowBook.append(judulBuku)
+        myBook.remove(judulBuku.title())
+        borrowBook.append(judulBuku.title())
     else:
-        print('Buku ', judulBuku, 'tidak ditemukan di list')
+        print('Buku ', judulBuku.title(), 'tidak ditemukan di list')
         print("Tekan \"Enter\" untuk melanjutkan")
         x = input()
 
 def pengembalianBuku(judulBuku):
     kondisi4 = True
     for i in range (len(borrowBook)):
-        if(judulBuku==borrowBook[i]):
+        if(judulBuku.title()==borrowBook[i]):
             kondisi4=False
             break
     if kondisi4 == False:
-        myBook.append(judulBuku)
-        borrowBook.remove(judulBuku)
+        myBook.append(judulBuku.title())
+        borrowBook.remove(judulBuku.title())
     else:
-        print('Buku ', judulBuku, 'tidak sedang dipinjam')
+        print('Buku ', judulBuku.title(), 'tidak sedang dipinjam')
         print("Tekan \"Enter\" untuk melanjutkan")
         x = input()
 
