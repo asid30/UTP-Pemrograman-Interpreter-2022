@@ -1,56 +1,86 @@
+import os
+
 myBook = ['Buku1','Buku2','Buku3','Buku4','Buku5']
+borrowBook = []
+namaPeminjam = []
 
 def cariBuku(namaBuku):
     kondisi1=True
+    kondisi2=True
     for i in range (len(myBook)):
         if(namaBuku==myBook[i]):
             kondisi1=False
             break
             
     if kondisi1 == False:
-        print("Ada bukunya!")
-
+        print('Buku ' + myBook[i] + ' telah ditemukan')
+        x = input()
     else:
-        print("Gaada bukunya!")
+        for i in range (len(borrowBook)):
+            if(borrowBook==myBook[i]):
+                kondisi2=False
+                break
+        
+    if kondisi2 == False:
+        print('Buku ' + myBook[i] + ' sedang dipinjam')
+        x = input()
+    else:
+        print('Buku ' + myBook[i] + ' tidak ditemukan')
+        x = input()
+    
 
-def tambahBuku(namaBuku,jumlah):
-    for i in range (jumlah):
-        myBook.append(namaBuku)
+def tambahBuku(judulBuku):
+    myBook.append(judulBuku)
     menuUtama()
 
-def pinjamBuku(namaBuku,jumlah):
-    for i in range (jumlah):
-        myBook.remove(namaBuku)
+def pinjamBuku(judulBuku,namaPeminjam):
+    myBook.remove(judulBuku)
+    borrowBook.append(judulBuku)
+    namaPeminjam.append(namaPeminjam)
     menuUtama()
+
+def pengembalianBuku(judulBuku,namaPeminjam):
+    for i in range (len(borrowBook)):
+        if borrowBook[i]==namaPeminjam[i]:
+            myBook.append(judulBuku)
+            borrowBook.remove(judulBuku)
+            namaPeminjam.remove(namaPeminjam)
 
 def menuUtama():
-    print(myBook)
-    print("""Menu Utama:
-    1. {0}
-    2. {1}
-    3. {2}
-    9. Keluar""".format("Cari buku", "Tambah buku", "Pinjam buku"))
+    #Program akan melakukan perulangan sampai exit
+    while(True):
+        os.system('cls') #membersihkan layar
+        print('List Buku')
+        print(myBook)
+        print('Buku yang sedang dipinjam')
+        print(borrowBook)
+        print('Nama peminjam')
+        print(namaPeminjam)
+        print('\n')
+        print("""Selamat Datang di program Katalog Perpustakaan:
+        1. {0}
+        2. {1}
+        3. {2}
+        4. {3}
+        9. Keluar""".format("Cari buku", "Tambah buku", "Pinjam buku","Pengembalian Buku"))
 
-    input1 = eval(input("Masukan Pilihan: "))
+        choose = eval(input("Masukan Pilihan: "))
 
-    if input1 == 1:
-        input2 = input('Masukkan nama buku : ')
-        cariBuku(input2)
+        if choose == 1:
+            judulBuku = input('Masukkan judul buku : ')
+            cariBuku(judulBuku)
+        elif choose == 2:
+            judulBuku = input('Masukan judul buku : ')
+            tambahBuku(judulBuku)
+        elif choose == 3:
+            judulBuku = input('Masukan judul buku : ')
+            namaPeminjam = input('Masukan nama peminjam : ')
+            pinjamBuku(judulBuku,namaPeminjam)
+        elif choose == 9:
+            print('Program telah berakhir')
+            break
+        else:
+            print('Invalid Input')
 
-    elif input1 == 2:
-        input2 = input('Masukan nama buku : ')
-        input3 = eval(input('Jumlah buku : '))
-        tambahBuku(input2,input3)
-
-    elif input1 == 3:
-        input4 = input('Masukan nama buku : ')
-        input5 = eval(input('Jumlah buku : '))
-        pinjamBuku(input4,input5)
-
-    elif input1 == 9:
-        exit
-
-    else:
-        print("GOBLOK")
-
+#Program dijalankan
 menuUtama()
