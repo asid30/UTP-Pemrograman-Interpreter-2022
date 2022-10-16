@@ -100,10 +100,12 @@ def menuUtama():
             judulBuku = input('Masukan judul buku : ')
             pengembalianBuku(judulBuku)
         elif choose == 9:
-            print('Program telah berakhir')
-            break
+            print('Program Telah Berakhir')
+            quit()
         else:
             print('Invalid Input')
+
+        print('Program telah berakhir')
 
 #Program dijalankan
 menuUtama()
