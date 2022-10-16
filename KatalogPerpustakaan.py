@@ -2,7 +2,6 @@ import os
 
 myBook = ['Buku1','Buku2','Buku3','Buku4','Buku5']
 borrowBook = []
-namaPeminjam = []
 
 def cariBuku(namaBuku):
     kondisi1=True
@@ -33,18 +32,18 @@ def tambahBuku(judulBuku):
     myBook.append(judulBuku)
     menuUtama()
 
-def pinjamBuku(judulBuku,namaPeminjam):
+def hapusBuku(judulBuku):
+    myBook.remove()
+
+def pinjamBuku(judulBuku):
     myBook.remove(judulBuku)
     borrowBook.append(judulBuku)
-    namaPeminjam.append(namaPeminjam)
     menuUtama()
 
-def pengembalianBuku(judulBuku,namaPeminjam):
-    for i in range (len(borrowBook)):
-        if borrowBook[i]==namaPeminjam[i]:
-            myBook.append(judulBuku)
-            borrowBook.remove(judulBuku)
-            namaPeminjam.remove(namaPeminjam)
+def pengembalianBuku(judulBuku):
+    myBook.append(judulBuku)
+    borrowBook.remove(judulBuku)
+    menuUtama()
 
 def menuUtama():
     #Program akan melakukan perulangan sampai exit
@@ -54,8 +53,6 @@ def menuUtama():
         print(myBook)
         print('Buku yang sedang dipinjam')
         print(borrowBook)
-        print('Nama peminjam')
-        print(namaPeminjam)
         print('\n')
         print("""Selamat Datang di program Katalog Perpustakaan:
         1. {0}
@@ -74,8 +71,7 @@ def menuUtama():
             tambahBuku(judulBuku)
         elif choose == 3:
             judulBuku = input('Masukan judul buku : ')
-            namaPeminjam = input('Masukan nama peminjam : ')
-            pinjamBuku(judulBuku,namaPeminjam)
+            pinjamBuku(judulBuku)
         elif choose == 9:
             print('Program telah berakhir')
             break
