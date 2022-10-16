@@ -36,10 +36,6 @@ def cariBuku(namaBuku):
 
 def tambahBuku(judulBuku):
     myBook.append(judulBuku)
-    menuUtama()
-
-def hapusBuku(judulBuku):
-    myBook.remove()
 
 def pinjamBuku(judulBuku):
     kondisi3 = True
@@ -54,23 +50,27 @@ def pinjamBuku(judulBuku):
         print('Buku ', judulBuku, 'tidak ditemukan di list')
         print("Tekan \"Enter\" untuk melanjutkan")
         x = input()
-    menuUtama()
 
 def pengembalianBuku(judulBuku):
     kondisi4 = True
     for i in range (len(borrowBook)):
         if(judulBuku==borrowBook[i]):
-            kondisi3=False
+            kondisi4=False
             break
-    if kondisi3 == False:
+    if kondisi4 == False:
         myBook.append(judulBuku)
         borrowBook.remove(judulBuku)
     else:
         print('Buku ', judulBuku, 'tidak sedang dipinjam')
         print("Tekan \"Enter\" untuk melanjutkan")
         x = input()
-    menuUtama()
 
+def denda (hari):
+    rasioDenda = 700.0
+    bayarDenda = hari*rasioDenda
+    print("Biaya yang harus dibayar: Rp",bayarDenda)
+    print("Tekan \"Enter\" untuk melanjutkan")
+    x = input()
 
 def menuUtama():
     #Program akan melakukan perulangan sampai exit
@@ -83,29 +83,39 @@ def menuUtama():
         2. {1}
         3. {2}
         4. {3}
-        9. Keluar""".format("Cari buku", "Tambah buku", "Pinjam buku","Pengembalian Buku"))
+        5. {4}
+        9. Keluar""".format("Cari buku", "Tambah buku", "Pinjam buku","Pengembalian buku","Kalkulator denda"))
 
         choose = eval(input("Masukan Pilihan: "))
 
         if choose == 1:
-            judulBuku = input('Masukkan judul buku : ')
+            judulBuku = input('Masukkan judul buku: ')
             cariBuku(judulBuku)
         elif choose == 2:
-            judulBuku = input('Masukan judul buku : ')
+            judulBuku = input('Masukan judul buku: ')
             tambahBuku(judulBuku)
         elif choose == 3:
-            judulBuku = input('Masukan judul buku : ')
+            judulBuku = input('Masukan judul buku: ')
             pinjamBuku(judulBuku)
         elif choose == 4:
-            judulBuku = input('Masukan judul buku : ')
+            judulBuku = input('Masukan judul buku: ')
             pengembalianBuku(judulBuku)
+        elif choose == 5:
+            hari = eval(input('Durasi telat pengembalian\hari : '))
+            denda(hari)
         elif choose == 9:
             print('Program Telah Berakhir')
             quit()
         else:
             print('Invalid Input')
-
-        print('Program telah berakhir')
+            print("Tekan \"Enter\" untuk melanjutkan")
+            x = input()
 
 #Program dijalankan
-menuUtama()
+while(True):
+    try:
+        menuUtama()
+    except NameError:
+        print("Invalid Input")
+        print("Tekan \"Enter\" untuk melanjutkan")
+        x = input()
