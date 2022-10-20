@@ -77,8 +77,8 @@ def denda (hari):
     x = input()
 
 def menuUtama():
-    pilihanMenu = ("Cari buku", "Tambah buku", "Pinjam buku","Pengembalian buku","Kalkulator denda")
     #Program akan melakukan perulangan sampai exit
+    
     while(True):
         os.system('cls') #membersihkan layar
         title()
@@ -90,7 +90,7 @@ def menuUtama():
         3. {2}
         4. {3}
         5. {4}
-        9. Keluar""".format(pilihanMenu[0], pilihanMenu[1], pilihanMenu[2],pilihanMenu[3],pilihanMenu[4]))
+        9. Keluar""".format("Cari buku", "Tambah buku", "Pinjam buku","Pengembalian buku","Kalkulator denda"))
 
         choose = eval(input("Masukan Pilihan: "))
 
@@ -121,7 +121,7 @@ def menuUtama():
 while(True):
     try:
         menuUtama()
-    except NameError:
+    except (NameError,SyntaxError,TypeError):
         print("Invalid Input")
         print("Tekan \"Enter\" untuk melanjutkan")
         x = input()
